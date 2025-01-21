@@ -3,31 +3,47 @@ import "./style.css";
     // borrador siguiente y anterior
 
 
-    let numMarcador = document.getElementsByClassName ("marcadorPrincipal")
-    const botonSigue = document.getElementsByClassName("botonSigue")
-    const botonAtras = document.getElementsByClassName("botonAtras")
+        const contadorElement = document.getElementById("marcadorPrincipal") as HTMLDivElement;
+        const botonSigue = document.getElementById("botonSigue") as HTMLButtonElement;
+        const botonAtras = document.getElementById("botonAtras") as HTMLButtonElement;
+        const botonReset = document.getElementById("botonReset") as HTMLButtonElement;
+        // const botonOk = document.getElementById("botonOk") as HTMLButtonElement;
+        // const inputNumber = document.getElementById("marcadorSecundario") as HTMLInputElement;
 
-    function siguiente(numMarcador: number): number  {
-         return numMarcador +1;
-    }
-    function anterior(numMarcador: number): number  {
-        return numMarcador -1;
-   }
+        let contador: number = 0;
+       
 
-    botonSigue .addEventListener('click', siguiente)
-    botonAtras .addEventListener('click', anterior)
+        const actualizarContador = () : void => {
+            contadorElement.textContent = contador.toString();
+        };
+        
+          // Listener para el botón de sumar.
+          
+        botonSigue.addEventListener("click", () => {
+            contador++; 
+            actualizarContador();
+        });
+        
+          // Listener para el botón de restar.
+          
+        botonAtras.addEventListener("click", () => {
+            if (contador > 0) {
+            contador--; 
+            }
+            actualizarContador();
+        });
 
-    // if (botonSigue != null || botonSigue != undefined){
-    //     siguiente;
-    // } 
+        botonReset.addEventListener("click", () => {
+            contador = 0;
+            actualizarContador();
+        });
 
-
-// borrador reset
-
-   const botonReset = document.getElementsByClassName("botonReset")
-   
-   function reset(){
-    numMarcador = 0;
-   }
-
-   botonReset .addEventListener('click', reset)
+/*
+        botonOk.addEventListener("click", () => {
+            const valor = parseInt(inputNumber.value); // Obtiene el valor del input y lo convierte a número
+            if (!isNaN(valor)) {  // Verifica que el valor sea un número válido
+            contador = valor;
+            }  
+        
+            actualizarContador();
+        }); */
